@@ -1,3 +1,5 @@
+![Github Banner](./public/banner.png)
+
 # Hush
 
 A sleep-sound mixer that runs entirely in the browser. You can layer rain, ocean, campfire, crickets, lullabies and noise, balance them with sliders, and set a timer that fades everything out as you fall asleep.
@@ -6,8 +8,8 @@ Every sound is synthesized live with the Web Audio API. There are no audio files
 
 ## Features
 
-- **32 generative sounds** in 7 groups: rain and storm, water, outdoors, cosy indoors, tones, lullabies and noise
-- **12 preset mixes**, plus your own saved mixes (stored in `localStorage`)
+- **43 generative sounds** in 7 groups: rain and storm, water, outdoors, cosy indoors, tones, lullabies and noise
+- **19 preset mixes**, plus your own saved mixes (stored in `localStorage`)
 - **Sleep timer** that fades out over the last 30 seconds
 - **Keeps playing overnight**: a screen wake lock (toggle), a silent media element and Media Session lock-screen controls
 - **Installable and offline**: a service worker precaches the app and its self-hosted fonts
