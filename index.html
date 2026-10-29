@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Hush — Sleep Mixer</title>
+    <meta
+      name="description"
+      content="Layer generative rain, ocean, fire and lullabies, then drift off with a fade-out timer."
+    />
+    <meta name="theme-color" content="#0e1322" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Hush" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  </head>
+  <body>
+    <header>
+      <canvas id="stars" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <h1>Hush<em>.</em></h1>
+        <p class="lede">
+          Tap sounds to layer them, drag the sliders to balance the mix, and set a timer to fade out
+          as you drift off.
+        </p>
+        <div class="presets" id="presets" aria-label="Preset mixes"></div>
+      </div>
+    </header>
+
+    <main class="wrap" id="board"></main>
+
+    <section class="wrap">
+      <h2>Your mixes</h2>
+      <form class="save" id="saveForm">
+        <input
+          id="mixName"
+          type="text"
+          placeholder="Name this mix, e.g. Tuesday rain"
+          maxlength="40"
+          autocomplete="off"
+          aria-label="Mix name"
+        />
+        <button class="btn" type="submit">Save mix</button>
+      </form>
+      <div id="saved"></div>
+      <p class="foot">
+        Every sound is generated live in your browser, so it never repeats exactly the same way
+        twice.
+      </p>
+    </section>
+
+    <audio id="keep" loop playsinline hidden></audio>
+    <div class="bar">
+      <div class="wrap">
+        <button class="play" id="play" aria-label="Play"></button>
+        <div class="now"><b id="nowTitle"></b><span id="nowSub"></span></div>
+        <div class="ctl">
+          <button class="chip" id="wake" type="button" aria-pressed="true">Screen on</button>
+          <select id="timer" aria-label="Sleep timer">
+            <option value="0">No timer</option>
+            <option value="5">5 min</option>
+            <option value="15">15 min</option>
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60">1 hour</option>
+            <option value="90">1.5 hours</option>
+            <option value="120">2 hours</option>
+          </select>
+          <label>
+            <svg class="vic" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9v6h4l5 4V5L8 9H4Z" />
+              <path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
+            </svg>
+            <input
+              id="master"
+              type="range"
+              min="0"
+              max="100"
+              value="80"
+              aria-label="Master volume"
+            />
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
