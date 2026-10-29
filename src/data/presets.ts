@@ -19,4 +19,11 @@ export const PRESETS: NamedMix[] = [
   { name: 'Cat nap', mix: { purr: 55, roof: 35, fire: 25 } },
   { name: 'Swamp night', mix: { frogs: 45, crickets: 35, owl: 45 } },
   { name: 'Cave retreat', mix: { drips: 55, waterfall: 25, drone: 20 } },
+  { name: 'Hummed to sleep', mix: { hum: 55, heartbeat: 15, pink: 20 } },
+  { name: 'Breathe easy', mix: { breath: 50, pad: 30, pink: 15 } },
+  { name: 'Settling baby', mix: { shush: 45, dryer: 40, heartbeat: 15 } },
+  { name: 'Camping', mix: { tent: 60, fire: 30, owl: 30 } },
+  { name: 'Summer dusk', mix: { cicadas: 40, leaves: 35, crickets: 25 } },
+  { name: 'Road trip', mix: { car: 65, drizzle: 25 } },
+  { name: 'Deep sea', mix: { whale: 55, underwater: 50 } },
 ];

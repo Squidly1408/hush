@@ -22,6 +22,10 @@ describe('notes', () => {
     expect(m[0][0]).toBeCloseTo(440);
     expect(m[1][1]).toBe(2);
   });
+
+  it('parses rests as frequency 0', () => {
+    expect(parseMelody('C4:1 R:2')[1]).toEqual([0, 2]);
+  });
 });
 
 describe('noise', () => {

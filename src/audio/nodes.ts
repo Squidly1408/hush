@@ -155,28 +155,27 @@ export function tone(
   o.stop(t + dur + 0.05);
 }
 
+/** Plays one note of a melody: `dur` seconds long, followed by `gap` seconds of rest (0 = legato). */
+export type Voice = (t: number, f: number, dur: number, gap: number) => void;
+
 /** Loops a written melody forever, with `rest` beats of silence between repeats. */
-export function melody(
-  L: Layer,
-  seq: string,
-  beat: number,
-  voice: (t: number, f: number) => void,
-  rest = 4,
-): void {
-  const notes = parseMelody(seq);
+export function melody(L: Layer, seq: string, beat: number, voice: Voice, rest = 4): void {
+  // Fold each rest into the gap after the note before it, so the voice knows when to breathe.
+  const notes: { f: number; dur: number; gap: number }[] = [];
+  for (const [f, beats] of parseMelody(seq)) {
+    if (f > 0) notes.push({ f, dur: beats * beat, gap: 0 });
+    else if (notes.length) notes[notes.length - 1].gap += beats * beat;
+  }
+  notes[notes.length - 1].gap += rest * beat;
   let i = 0;
   sched(
     L,
     () => {
-      const d = notes[i][1] * beat;
-      i++;
-      if (i >= notes.length) {
-        i = 0;
-        return d + rest * beat;
-      }
-      return d;
+      const n = notes[i];
+      i = (i + 1) % notes.length;
+      return n.dur + n.gap;
     },
-    (t) => voice(t, notes[i][0]),
+    (t) => voice(t, notes[i].f, notes[i].dur, notes[i].gap),
     0.3,
   );
 }

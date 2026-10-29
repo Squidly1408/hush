@@ -11,13 +11,13 @@ export function noteFreq(name: string): number {
   return midiFreq(NOTE_INDEX[m[1]] + accidental + (Number(m[3]) + 1) * 12);
 }
 
-/** Parses "E4:1 G4:3 …" (note:beats) into [frequency, beats] pairs. */
+/** Parses "E4:1 G4:3 R:1 …" (note:beats) into [frequency, beats] pairs; a rest "R" has frequency 0. */
 export function parseMelody(seq: string): [freq: number, beats: number][] {
   return seq
     .trim()
     .split(/\s+/)
     .map((x) => {
       const [n, d] = x.split(':');
-      return [noteFreq(n), Number(d)];
+      return [n === 'R' ? 0 : noteFreq(n), Number(d)];
     });
 }
